@@ -95,6 +95,7 @@ public class MyHashSet<K> {
 
 		if (lst.contains(element)) {
 			lst.remove(element);
+			current_elem--;
 			return true;
 		} else
 			return false;
