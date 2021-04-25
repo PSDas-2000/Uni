@@ -5,6 +5,8 @@ package ha04;
 
 /**
  * @author Param
+ * @author Hazem Falah
+ * @author Leon Ikinger
  *
  */
 public class BinTree {
@@ -29,6 +31,13 @@ public class BinTree {
 		System.out.println("Elternknoten von 50: " + tree.getParentNode(50).data);// 20
 	}
 
+	/**
+	 * <b>Class TreeNode</b>
+	 * <br>
+	 * Acts as the Node class to BinTree
+	 * @author Param
+	 *
+	 */
 	public class TreeNode {
 
 		public int data;
@@ -43,6 +52,13 @@ public class BinTree {
 
 	private TreeNode root;
 
+	/**
+	 * Fetches the node that has fulfills the condition : <code>data = x</code>.
+	 * <br>
+	 * If no node fulfills this condition, null is returned
+	 * @param x
+	 * @return
+	 */
 	private TreeNode getNode(int x) {
 
 		TreeNode res = root;
@@ -60,6 +76,14 @@ public class BinTree {
 		return res;
 	}
 
+	/**
+	 * Fetches the node that has fulfills the condition : <code>data = x</code>.
+	 * <br>
+	 * If no node fulfills this condition or if the required node has no parent (is the root element itself), null is returned
+	 * @param x
+	 * @return	Parent Node of Node containing x or
+	 * 			<br> null if, Node is root or no suitable Node is found
+	 */
 	private TreeNode getParentNode(int x) {
 		TreeNode res = root;
 		TreeNode par = null;
@@ -85,6 +109,11 @@ public class BinTree {
 		return par;
 	}
 
+	/**
+	 * Inserts a element x to the this instance of BinTree
+	 * @param x
+	 * @throws ArithmeticException if the element to be added already existed in this tree
+	 */
 	public void insert(int x) {
 		if (root == null) {
 			root = new TreeNode(x);
@@ -116,12 +145,21 @@ public class BinTree {
 
 	}
 
+	/**
+	 * Resets this instance of BinTree
+	 */
 	public void clear() {
 		root = null;
 	}
 
+	/**
+	 * Method which finds the Node containing data x and removes it while preserving the
+	 * structure of the tree
+	 * @param x
+	 * @throws ArithmeticException if x could not be found
+	 */
 	public void remove(int x) {
-
+		
 		TreeNode par = getParentNode(x);
 		TreeNode elem = null;
 
@@ -139,19 +177,20 @@ public class BinTree {
 
 	}
 
+	//Helping method to finish the removal of an element
 	private void findAndRemoveCandidate(TreeNode parent, TreeNode elem, int x) {
 
 		// BLATT
 		if (elem.left == null & elem.right == null) {
 			if (parent == null) {
 				root = null;
-				return;
 			} else {
 				if (x < parent.data)
 					parent.left = null;
 				else
 					parent.right = null;
 			}
+			return;
 		}
 
 		// EIN SOHN
@@ -159,13 +198,13 @@ public class BinTree {
 			TreeNode subTree = (elem.left == null) ? elem.right : elem.left;
 			if (parent == null) {
 				root = subTree;
-				return;
 			} else {
 				if (x < parent.data)
 					parent.left = subTree;
 				else
 					parent.right = subTree;
 			}
+			return;
 		}
 
 		// ZWEI SOEHNE
