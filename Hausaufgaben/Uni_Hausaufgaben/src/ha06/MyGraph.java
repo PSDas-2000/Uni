@@ -18,7 +18,12 @@ public class MyGraph extends Graph {
 	public MyGraph(int vertices, int edges) {
 		super(vertices, edges);
 	}
-		
+	
+	/**
+	 * Gibt den Graphen als Kantenliste zurueck.
+	 * 
+	 * @return Kantenliste dieses Graphs
+	 */
 	public ArrayList<Integer> getEdgeList(){
 		ArrayList<Integer> lst = new ArrayList<>();
 		int v = this.getVertexCount();
@@ -34,6 +39,11 @@ public class MyGraph extends Graph {
 		return lst;
 	}
 	
+	/**
+	 * Gibt den Graphen als Knotenliste zurueck
+	 * 
+	 * @return Knotenliste dieses Graphs
+	 */
 	public ArrayList<Integer> getVertexList(){
 		ArrayList<Integer> lst = new ArrayList<>();
 		int v = this.getVertexCount();
@@ -51,6 +61,12 @@ public class MyGraph extends Graph {
 		return lst;
 	}
 	
+	/**
+	 * Gibt den Graphen als Adjazenzmatrix zurueck.
+	 * <b>Die Matrix hat keine Dummy-Elements!</b>
+	 * 
+	 * @return Adjazenzmatrix des Graphs
+	 */
 	public int[][] getAdjacencyMatrix(){
 		int v = this.getVertexCount();
 		int[][] adjacencyMatrix = new int[v][v];
@@ -62,6 +78,13 @@ public class MyGraph extends Graph {
 		return adjacencyMatrix;
 	}
 	
+	/**
+	 * Durchlaeuft den Graphen mit <b>Breitensuche</b> und gibt eine Liste der
+	 * Knoten in durchlaufener Reihenfolge zurueck
+	 * 
+	 * @param start
+	 * @return Liste aller Knoten, die von <b>start</b> erreicht werden koennen
+	 */
 	public ArrayList<Integer> bfs(int start){
 		checkStart(start);
 		
@@ -85,6 +108,13 @@ public class MyGraph extends Graph {
 		return result;
 	}
 	
+	/**
+	 * Durchlaeuft den Graphen mit <b>Tiefensuche</b> und gibt eine Liste der
+	 * Knoten in durchlaufener Reihenfolge zurueck
+	 * 
+	 * @param start
+	 * @return Liste aller Knoten, die von <b>start</b> erreicht werden koennen
+	 */
 	public ArrayList<Integer> dfs(int start){
 		checkStart(start);
 		
@@ -119,6 +149,13 @@ public class MyGraph extends Graph {
 		return result;
 	}
 	
+	/**
+	 * Gibt die Liste aller Knoten zurueck, die vom Knoten <b>start</b> aus
+	 * nicht erreichbar sind.
+	 * 
+	 * @param start
+	 * @return	Liste aller unerreichbaren Knoten von <b>start</b> aus
+	 */
 	public ArrayList<Integer> getUnreachableVertices(int start){
 		checkStart(start);
 		
@@ -147,6 +184,7 @@ public class MyGraph extends Graph {
 		return result;
 	}
 	
+	//Hilfsmethode zur Ueberpruefung des Start-Werts
 	private void checkStart(int start) {
 		if(start < 0 || start > this.getVertexCount())
 			throw new IllegalArgumentException(String.format("Start node %d could not be found", start));
