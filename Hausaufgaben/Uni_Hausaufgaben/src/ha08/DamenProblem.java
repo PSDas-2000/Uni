@@ -7,14 +7,22 @@ import java.util.ArrayList;
 
 /**
  * @author Param
+ * @author Hazem Falah
+ * @author Leon Ikinger
  *
  */
 public class DamenProblem {
 	
 	public static void main(String[] args) {
-		damenProblem(4);
+		damenProblem(14);
 	}
 	
+	/**
+	 * Diese methode gibt alle Loesungen des Damen-Problems zu einem 
+	 * Schachbrett mit der uebergebenen Groesse auf dem Schirm aus.
+	 * 
+	 * @param brettgroesse
+	 */
 	public static void damenProblem(int brettgroesse) {
 		if(brettgroesse == 1)
 			System.out.println("[1]");
@@ -22,45 +30,46 @@ public class DamenProblem {
 			System.out.println("Keine Loesung");
 		else {
 			ArrayList<Integer> pos = new ArrayList<>();
-			damenProblem(pos, brettgroesse, 1);
+			damenProblem(pos, brettgroesse);
 		}
 	}
 	
-	private static boolean damenProblem(ArrayList<Integer> pos, int brettgroesse,  int spalte) {
-		if(pos.size() == brettgroesse) {
-			System.out.println(displayCoordinates(pos));
-			return true;
+	/**
+	 * Die rekursive Hilfsmethode um die Loesung des Damen-Problems zu finden
+	 * @param pos
+	 * @param brettgroesse
+	 */
+	private static void damenProblem(ArrayList<Integer> pos, int brettgroesse) {
+	// pos.size() entspricht die Spalte, wo wir gerade sind
+		if(pos.size()== brettgroesse) {
+			System.out.println(pos.toString());
+			return;
 		}
-		boolean foundValid = false;
-		boolean subCheck = false;
-		for(int i = 0; i < brettgroesse; i++) {
-			if(isValidPosition(i, spalte - 1, pos)) {
-				foundValid = true;
-				pos.add(spalte - 1, i);
-				subCheck = damenProblem(pos, brettgroesse, spalte + 1);
-				pos.remove(spalte - 1);
+		for(int i = 1; i <= brettgroesse; i++) {
+			if(isValidPosition(i, pos.size(), pos)) {
+				pos.add(i);
+				damenProblem(pos, brettgroesse);
+				pos.remove(pos.size() - 1);
 			}
 		}
-		return foundValid && subCheck;
 	}
 	
+	/**
+	 * Ueberprueft, ob die Position (<code>zeile</code>, <code>spalte</code>) eine Position ist, wo
+	 * eine Damen stehen darf, ohne von anderen Damen geschlagen zu werden.</br></br>
+	 * 
+	 * Die Positionen von anderen Damen werden durch <code>pos</code> definiert	
+	 * 
+	 * @param zeile
+	 * @param spalte
+	 * @param pos
+	 * @return
+	 */
 	private static boolean isValidPosition(int zeile, int spalte, ArrayList<Integer> pos) {
 		for(int i = 0; i < pos.size(); i++) {
 			if(zeile == pos.get(i) || spalte == i || Math.abs(spalte - i) == Math.abs(zeile - pos.get(i)))
 				return false;
 		}
 		return true;
-	}
-	
-	private static String displayCoordinates(ArrayList<Integer> pos) {
-		StringBuilder s = new StringBuilder("");
-		s.append("[");
-		for(int i = 0; i < pos.size(); i++) {
-			s.append(String.format("%d, ", pos.get(i) + 1));
-		}
-		s.deleteCharAt(s.length() - 1);
-		s.deleteCharAt(s.length() - 1);
-		s.append("]");
-		return s.toString();
 	}
 }
