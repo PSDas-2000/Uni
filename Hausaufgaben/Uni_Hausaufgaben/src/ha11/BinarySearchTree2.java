@@ -225,7 +225,7 @@ public class BinarySearchTree2 extends BinarySearchTree {
 	    //      3   7
 	    //    1       8
 	    baum.show();
-	    System.out.println("S1 -> Average for Node with key 5 (expected 4.8) : " + baum.getAverageOfSubtree(5));
+	    System.out.println("S1 -> Average from root node (expected 4.8) : " + baum.getAverageOfSubtree(5));
 	    System.out.println();
 	    
 	    baum.insert(4);
@@ -234,7 +234,7 @@ public class BinarySearchTree2 extends BinarySearchTree {
 	    //      3   7
 	    //    1  4    8
 	    baum.show();
-	    System.out.println("S2 -> Average for Node with key 5 (expected 4.666) : " + baum.getAverageOfSubtree(5));
+	    System.out.println("S2 -> Average from root node (expected 4.666) : " + baum.getAverageOfSubtree(5));
 	    System.out.println();
 	    
 	    baum.insert(6);
@@ -243,7 +243,7 @@ public class BinarySearchTree2 extends BinarySearchTree {
 	    //      3   7
 	    //    1  4 6  8
 	    baum.show();
-	    System.out.println("S3 -> Average for Node with key 5 (expected 4.86) : " + baum.getAverageOfSubtree(5));
+	    System.out.println("S3 -> Average from root node (expected 4.86) : " + baum.getAverageOfSubtree(5));
 	    System.out.println();
 	    
 	    baum.remove(4);
@@ -252,7 +252,7 @@ public class BinarySearchTree2 extends BinarySearchTree {
 	    //      3   7
 	    //    1    6  8
 	    baum.show();
-	    System.out.println("S4 -> Average for Node with key 5 (expected 5) : " + baum.getAverageOfSubtree(5));
+	    System.out.println("S4 -> Average from root node (expected 5) : " + baum.getAverageOfSubtree(5));
 	    System.out.println();
 	    
 	    baum.remove(5);
@@ -261,7 +261,7 @@ public class BinarySearchTree2 extends BinarySearchTree {
 	    //      3   7
 	    //    1       8
 	    baum.show();
-	    System.out.println("S5 -> Average for Node with key 6 (expected 5) : " + baum.getAverageOfSubtree(6));
+	    System.out.println("S5 -> Average from root node (expected 5) : " + baum.getAverageOfSubtree(6));
 	    System.out.println();
 	}
 
