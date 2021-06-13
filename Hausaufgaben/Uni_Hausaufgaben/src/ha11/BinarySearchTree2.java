@@ -139,6 +139,9 @@ public class BinarySearchTree2 extends BinarySearchTree {
 				parent.setLeft(null); // => nun kein linkes Kind mehr da
 			else // Knoten ist rechtes Kind?
 				parent.setRight(null); // => nun kein rechtes Kind mehr da
+			
+			//Einmal wenn Node geloescht wird, werden die neue Mittelwerte berechnet
+			//und die Anzahl an Knoten in Teilbaum werden auch aktualisiert
 			this.setValues(node);
 		}
 	}
@@ -153,6 +156,9 @@ public class BinarySearchTree2 extends BinarySearchTree {
 		node.setValue(kind.getValue()); // Inhalt des Kindes in den zu loeschenden
 		node.setLeft(kind.getLeft()); // Knoten kopieren, der damit faktisch
 		node.setRight(kind.getRight()); // verschwunden ist
+		
+		//Einmal wenn Node geloescht wird, werden die neue Mittelwerte berechnet
+		//und die Anzahl an Knoten in Teilbaum werden auch aktualisiert
 		this.setValues(node);
 	}
 
@@ -184,6 +190,8 @@ public class BinarySearchTree2 extends BinarySearchTree {
 		else // Schleife mindestens einmal durchlaufen?
 			elter.setLeft(ersatz.getRight()); // => neues linkes Kind im Elternknoten
 		
+		//Einmal wenn Node geloescht wird, werden die neue Mittelwerte berechnet
+		//und die Anzahl an Knoten in Teilbaum werden auch aktualisiert
 		this.setValues(node);
 	}
 
@@ -261,6 +269,13 @@ public class BinarySearchTree2 extends BinarySearchTree {
 		baumTesten(new BinarySearchTree2());
 	}
 
+	/**
+	 * Gibt der Mittelwert zurueck von dem Unterbaum, der durch den Knoten aufgespannt wird, der den Wert <code>val</code> hat.
+	 * 
+	 * @param val
+	 * @throws NoSuchElementException falls es keinen Knoten mit Wert <code>val</code> gefunden werden konnte
+	 * @return
+	 */
 	public double getAverageOfSubtree(int val) {
 		TreeNode node = getNode(val);
 		if (node == null)

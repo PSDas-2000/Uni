@@ -11,9 +11,9 @@ public class BinarySearchTree {
 		private int value;
 		private TreeNode left;
 		private TreeNode right;
-		private TreeNode parent;
-		private double avg;
-		private int subNodeCount;
+		private TreeNode parent;	// Um von unten nach oben durcharbeiten zu koennen
+		private double avg;			// Speichert der Mittelwert des Unterbaums, der von diesem Knoten aus geht
+		private int subNodeCount;	// Speichert die Anzahl an Knoten, die im Unterbaum sind, der von diesem Knoten aus geht
 
 		public double getAvg() {
 			return avg;
@@ -42,6 +42,7 @@ public class BinarySearchTree {
 		}
 
 		public TreeNode(int value, TreeNode parent) {
+			// Damit die Elternelementen auch betrachtet werden koennen
 			this.parent = parent;
 			this.value = value;
 			this.subNodeCount = 1;
@@ -140,6 +141,12 @@ public class BinarySearchTree {
 		return false;
 	}
 
+	/**
+	 * Die Methode faengt bei dem Eltern von <code>node</code> an und berechnet nach und nach
+	 * die neue Mittelwerte fuer alle betroffene Elternknoten
+	 * 
+	 * @param node
+	 */
 	protected void setValues(TreeNode node) {
 		TreeNode par = node.parent;
 		while (par != null) {
